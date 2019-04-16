@@ -1,0 +1,323 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| dumowq             |
+| mydb               |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| session            |
+| sys                |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use mydb
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_mydb |
++----------------+
+| Sales          |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select * from Sales
+    -> ;
+Empty set (0.01 sec)
+
+mysql> select * from sales;
+ERROR 1146 (42S02): Table 'mydb.sales' doesn't exist
+mysql> select * from Sales;
+Empty set (0.00 sec)
+
+mysql> select * from Sales;
+Empty set (0.00 sec)
+
+mysql> select * from Sales;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2010, 'India', 'Laptop', 4000);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2006, 'India', 'Camera', 3500);
+ERROR 1062 (23000): Duplicate entry 'India' for key 'country_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2002, 'India', 'TV', 3100);
+ERROR 1062 (23000): Duplicate entry 'India' for key 'country_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2010, 'India', 'Mobile', 2000);
+ERROR 1062 (23000): Duplicate entry '2010' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2006, 'India', 'Desktop', 4500);
+ERROR 1062 (23000): Duplicate entry 'India' for key 'country_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2002, 'India', 'Printer', 1500);
+ERROR 1062 (23000): Duplicate entry 'India' for key 'country_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2010, 'Australia', 'Laptop', 2600);
+ERROR 1062 (23000): Duplicate entry '2010' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2006, 'Australia', 'Camera', 1950);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2002, 'Australia', 'TV', 2160);
+ERROR 1062 (23000): Duplicate entry 'Australia' for key 'country_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2010, 'Australia', 'Mobile', 950);
+ERROR 1062 (23000): Duplicate entry '2010' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2006, 'Australia', 'Desktop', 4100);
+ERROR 1062 (23000): Duplicate entry '2006' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2002, 'Australia', 'Printer', 1850);
+ERROR 1062 (23000): Duplicate entry 'Australia' for key 'country_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2010, 'Germany', 'Laptop', 2700);
+ERROR 1062 (23000): Duplicate entry '2010' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2006, 'Germany', 'Camera', 1900);
+ERROR 1062 (23000): Duplicate entry '2006' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2002, 'Germany', 'TV', 1250);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2010, 'Germany', 'Mobile', 1500);
+ERROR 1062 (23000): Duplicate entry '2010' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2006, 'Germany', 'Desktop', 1050);
+ERROR 1062 (23000): Duplicate entry '2006' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2002, 'Germany', 'Printer', 2200);
+ERROR 1062 (23000): Duplicate entry '2002' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2010, 'Japan', 'Laptop', 1000);
+ERROR 1062 (23000): Duplicate entry '2010' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2006, 'Japan', 'Camera', 1900);
+ERROR 1062 (23000): Duplicate entry '2006' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2002, 'Japan', 'TV', 1750);
+ERROR 1062 (23000): Duplicate entry '2002' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2010, 'Japan', 'Mobile', 1800);
+ERROR 1062 (23000): Duplicate entry '2010' for key 'year_UNIQUE'
+mysql> INSERT INTO `mydb`.`Sales` (`year`, `country`, `product`, `profit`) VALUES (2006, 'Japan', 'Desktop', 2000);
+ERROR 1062 (23000): Duplicate entry '2006' for key 'year_UNIQUE'
+mysql> drop table Sales;                                                        Query OK, 0 rows affected (0.19 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_mydb |
++----------------+
+| Sales          |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select * from Sales;
++------+-----------+---------+--------+
+| year | country   | product | profit |
++------+-----------+---------+--------+
+| 2002 | Australia | Printer |   1850 |
+| 2002 | Australia | TV      |   2160 |
+| 2002 | Germany   | Printer |   2200 |
+| 2002 | Germany   | TV      |   1250 |
+| 2002 | India     | Printer |   1500 |
+| 2002 | India     | TV      |   3100 |
+| 2002 | Japan     | Printer |   1400 |
+| 2002 | Japan     | TV      |   1750 |
+| 2006 | Australia | Camera  |   1950 |
+| 2006 | Australia | Desktop |   4100 |
+| 2006 | Germany   | Camera  |   1900 |
+| 2006 | Germany   | Desktop |   1050 |
+| 2006 | India     | Camera  |   3500 |
+| 2006 | India     | Desktop |   4500 |
+| 2006 | Japan     | Camera  |   1900 |
+| 2006 | Japan     | Desktop |   2000 |
+| 2010 | Australia | Laptop  |   2600 |
+| 2010 | Australia | Mobile  |    950 |
+| 2010 | Germany   | Laptop  |   2700 |
+| 2010 | Germany   | Mobile  |   1500 |
+| 2010 | India     | Laptop  |   4000 |
+| 2010 | India     | Mobile  |   2000 |
+| 2010 | Japan     | Laptop  |   1000 |
+| 2010 | Japan     | Mobile  |   1800 |
++------+-----------+---------+--------+
+24 rows in set (0.00 sec)
+
+
+mysql> select year, sum(profit) from Sales group by year with rollup;
++------+-------------+
+| year | sum(profit) |
++------+-------------+
+| 2002 |       15210 |
+| 2006 |       20900 |
+| 2010 |       16550 |
+| NULL |       52660 |
++------+-------------+
+4 rows in set (0.02 sec)
+
+mysql> select year, sum(profit) from Sales group by year;
++------+-------------+
+| year | sum(profit) |
++------+-------------+
+| 2002 |       15210 |
+| 2006 |       20900 |
+| 2010 |       16550 |
++------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select year, sum(profit) from Sales group by year with rollup;
++------+-------------+
+| year | sum(profit) |
++------+-------------+
+| 2002 |       15210 |
+| 2006 |       20900 |
+| 2010 |       16550 |
+| NULL |       52660 |
++------+-------------+
+4 rows in set (0.00 sec)
+
+
+mysql> select year,country, sum(profit) from Sales group by year,country;
++------+-----------+-------------+
+| year | country   | sum(profit) |
++------+-----------+-------------+
+| 2002 | Australia |        4010 |
+| 2002 | Germany   |        3450 |
+| 2002 | India     |        4600 |
+| 2002 | Japan     |        3150 |
+| 2006 | Australia |        6050 |
+| 2006 | Germany   |        2950 |
+| 2006 | India     |        8000 |
+| 2006 | Japan     |        3900 |
+| 2010 | Australia |        3550 |
+| 2010 | Germany   |        4200 |
+| 2010 | India     |        6000 |
+| 2010 | Japan     |        2800 |
++------+-----------+-------------+
+12 rows in set (0.00 sec)
+
+mysql> select year,country, sum(profit) from Sales group by year,country with rollup;
++------+-----------+-------------+
+| year | country   | sum(profit) |
++------+-----------+-------------+
+| 2002 | Australia |        4010 |
+| 2002 | Germany   |        3450 |
+| 2002 | India     |        4600 |
+| 2002 | Japan     |        3150 |
+| 2002 | NULL      |       15210 |
+| 2006 | Australia |        6050 |
+| 2006 | Germany   |        2950 |
+| 2006 | India     |        8000 |
+| 2006 | Japan     |        3900 |
+| 2006 | NULL      |       20900 |
+| 2010 | Australia |        3550 |
+| 2010 | Germany   |        4200 |
+| 2010 | India     |        6000 |
+| 2010 | Japan     |        2800 |
+| 2010 | NULL      |       16550 |
+| NULL | NULL      |       52660 |
++------+-----------+-------------+
+16 rows in set (0.01 sec)
+
+mysql> select year,country,product, sum(profit) from Sales group by year,country,product with rollup;
++------+-----------+---------+-------------+
+| year | country   | product | sum(profit) |
++------+-----------+---------+-------------+
+| 2002 | Australia | Printer |        1850 |
+| 2002 | Australia | TV      |        2160 |
+| 2002 | Australia | NULL    |        4010 |
+| 2002 | Germany   | Printer |        2200 |
+| 2002 | Germany   | TV      |        1250 |
+| 2002 | Germany   | NULL    |        3450 |
+| 2002 | India     | Printer |        1500 |
+| 2002 | India     | TV      |        3100 |
+| 2002 | India     | NULL    |        4600 |
+| 2002 | Japan     | Printer |        1400 |
+| 2002 | Japan     | TV      |        1750 |
+| 2002 | Japan     | NULL    |        3150 |
+| 2002 | NULL      | NULL    |       15210 |
+| 2006 | Australia | Camera  |        1950 |
+| 2006 | Australia | Desktop |        4100 |
+| 2006 | Australia | NULL    |        6050 |
+| 2006 | Germany   | Camera  |        1900 |
+| 2006 | Germany   | Desktop |        1050 |
+| 2006 | Germany   | NULL    |        2950 |
+| 2006 | India     | Camera  |        3500 |
+| 2006 | India     | Desktop |        4500 |
+| 2006 | India     | NULL    |        8000 |
+| 2006 | Japan     | Camera  |        1900 |
+| 2006 | Japan     | Desktop |        2000 |
+| 2006 | Japan     | NULL    |        3900 |
+| 2006 | NULL      | NULL    |       20900 |
+| 2010 | Australia | Laptop  |        2600 |
+| 2010 | Australia | Mobile  |         950 |
+| 2010 | Australia | NULL    |        3550 |
+| 2010 | Germany   | Laptop  |        2700 |
+| 2010 | Germany   | Mobile  |        1500 |
+| 2010 | Germany   | NULL    |        4200 |
+| 2010 | India     | Laptop  |        4000 |
+| 2010 | India     | Mobile  |        2000 |
+| 2010 | India     | NULL    |        6000 |
+| 2010 | Japan     | Laptop  |        1000 |
+| 2010 | Japan     | Mobile  |        1800 |
+| 2010 | Japan     | NULL    |        2800 |
+| 2010 | NULL      | NULL    |       16550 |
+| NULL | NULL      | NULL    |       52660 |
++------+-----------+---------+-------------+
+40 rows in set (0.00 sec)
+
+mysql> mysql> select year,country,product, sum(profit) from Sales where year=2002 group by year,country,product with rollup;
++------+-----------+---------+-------------+
+| year | country   | product | sum(profit) |
++------+-----------+---------+-------------+
+| 2002 | Australia | Printer |        1850 |
+| 2002 | Australia | TV      |        2160 |
+| 2002 | Australia | NULL    |        4010 |
+| 2002 | Germany   | Printer |        2200 |
+| 2002 | Germany   | TV      |        1250 |
+| 2002 | Germany   | NULL    |        3450 |
+| 2002 | India     | Printer |        1500 |
+| 2002 | India     | TV      |        3100 |
+| 2002 | India     | NULL    |        4600 |
+| 2002 | Japan     | Printer |        1400 |
+| 2002 | Japan     | TV      |        1750 |
+| 2002 | Japan     | NULL    |        3150 |
+| 2002 | NULL      | NULL    |       15210 |
+| NULL | NULL      | NULL    |       15210 |
++------+-----------+---------+-------------+
+14 rows in set (0.00 sec)
+
+mysql> select year,country,product, sum(profit) from Sales where (year=2002 or year=2006) AND (country='India' or country='Germany') group by year,country,product with rollup;
++------+---------+---------+-------------+
+| year | country | product | sum(profit) |
++------+---------+---------+-------------+
+| 2002 | Germany | Printer |        2200 |
+| 2002 | Germany | TV      |        1250 |
+| 2002 | Germany | NULL    |        3450 |
+| 2002 | India   | Printer |        1500 |
+| 2002 | India   | TV      |        3100 |
+| 2002 | India   | NULL    |        4600 |
+| 2002 | NULL    | NULL    |        8050 |
+| 2006 | Germany | Camera  |        1900 |
+| 2006 | Germany | Desktop |        1050 |
+| 2006 | Germany | NULL    |        2950 |
+| 2006 | India   | Camera  |        3500 |
+| 2006 | India   | Desktop |        4500 |
+| 2006 | India   | NULL    |        8000 |
+| 2006 | NULL    | NULL    |       10950 |
+| NULL | NULL    | NULL    |       19000 |
++------+---------+---------+-------------+
+15 rows in set (0.01 sec)
+
+
+mysql> select 
+    -> country,
+    -> sum(if(product = 'Desktop', profit, NULL)) as 'Desktop',
+    -> sum(if(product = 'Camera', profit, NULL)) as 'Camera',
+    -> sum(if(product = 'Printer', profit, NULL)) as 'Printer',
+    -> sum(if(product = 'TV', profit, NULL)) as 'TV',
+    -> sum(if(product = 'Mobile', profit, NULL)) as 'Mobile',
+    -> sum(if(product = 'Laptop', profit, NULL)) as 'Laptop'
+    -> from sales
+    -> group by country;
+
++-----------+---------+--------+---------+------+--------+--------+
+| country   | Desktop | Camera | Printer | TV   | Mobile | Laptop |
++-----------+---------+--------+---------+------+--------+--------+
+| Australia |    4100 |   1950 |    1850 | 2160 |    950 |   2600 |
+| Germany   |    1050 |   1900 |    2200 | 1250 |   1500 |   2700 |
+| India     |    4500 |   3500 |    1500 | 3100 |   2000 |   4000 |
+| Japan     |    2000 |   1900 |    1400 | 1750 |   1800 |   1000 |
++-----------+---------+--------+---------+------+--------+--------+
+4 rows in set (0.00 sec)
+
+
+
